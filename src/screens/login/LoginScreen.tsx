@@ -7,27 +7,21 @@ import * as React from 'react';
  */
 import createStyles from "./LoginScreen.style";
 
-import { SafeAreaView, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import WavyHeader from "./components/wavy-header/WavyHeader";
 import { Button, Card, TextInput } from "react-native-paper";
+import { navigateToScreen } from "@shared-constants";
+import { Formik } from "formik";
+import LoginForm from "./components/login-form/LoginForm";
+
 interface LoginScreenProps {
-  navigation: any;
-
-  /* loadingState: LoadingState;
-  loginState: LoginState; */
-  recoverPassword: Function;
-  showLoading: Function;
-
-
+ 
 }
-
-  const LoginScreen=   () => {
-
+  const LoginScreen : React.FC<LoginScreenProps> = () => {
+  
     const theme = useTheme();
-    const { colors } = theme;
     const styles = useMemo(() => createStyles(theme), [theme]);
-    const [show, setShow] = React.useState(false);
-
+    const login = navigateToScreen("HomeScreen")
 
   return (
     <SafeAreaView style= {styles.content}>
@@ -37,12 +31,58 @@ interface LoginScreenProps {
     <Card>
     <Card.Title title= "Pet App"></Card.Title>
     <Card.Content>
-      <TextInput  label= "Email" keyboardType="email-address"/>
-      <TextInput label= "Password" secureTextEntry={true}/>
-      <Button uppercase={false} style= {styles.cardButton}>Forgot email/password</Button>
-      <Button mode= "contained" style= {styles.cardButton}>Login</Button>
-      <Button style= {styles.cardButton}>Register</Button>
+      <Formik 
+      initialValues={{email: '', password: ''}}
+      onSubmit={() => login}
+      validationSchema={LoginForm}>
+      {({handleChange, handleSubmit, setFieldTouched, touched, errors}) => (
+        <>
+      <TextInput 
+      label= "Email" 
+      testID="email"
+      keyboardType="email-address" 
+      onChangeText={handleChange('email')}
+      onFocus={() => setFieldTouched('email')}/>{
+        touched.email ? 
+        <Text 
+        testID= "errors-email" 
+        style= {styles.error}>{errors.email}</Text> 
+        : null
+      }
+      <TextInput 
+      label= "Password" 
+      testID="password"
+      secureTextEntry={true} 
+      onChangeText={handleChange('password')}
+      onFocus={() => setFieldTouched('password')}/>{
+        touched.password ? 
+        <Text 
+        testID= "errors-password" 
+        style= {styles.error}>{errors.password}</Text> 
+        : null
+      }
 
+      <Button 
+      uppercase={false} 
+      style= {styles.cardButton}
+      testID="recoveryButton">
+        Forgot email/password
+      </Button>
+
+      <Button 
+      mode= "contained" 
+      testID="loginButton"
+      style= {styles.cardButton} 
+      onPress={handleSubmit}>Login</Button>
+
+      <Button 
+      style= {styles.cardButton} 
+      testID="registerButton"
+      onPress={handleSubmit}>Register</Button>
+      </>
+      )
+      }
+      </Formik>
     </Card.Content>
     </Card>
     </View>

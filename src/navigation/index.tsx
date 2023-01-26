@@ -18,6 +18,7 @@ import VetInfoScreen from "@screens/vet-info/VetInfoScreen";
 import ProfileScreen from "@screens/profile/ProfileScreen";
 import NotificationScreen from "@screens/notification/NotificationScreen";
 import VetScreen from "@screens/vet/VetScreen";
+import RegisterScreen from "@screens/register/RegisterScreen";
 
 
 // ? If you want to use stack or tab or both
@@ -97,6 +98,7 @@ const RenderTabNavigation = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={SCREENS.HOME} component={RenderTabNavigation} />
         <Stack.Screen name={SCREENS.VETINFO} component={VetInfoScreen} />
+        <Stack.Screen name={SCREENS.REGISTER} component={RegisterScreen} />
        </Stack.Navigator> 
     </NavigationContainer>
   );

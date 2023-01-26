@@ -1,14 +1,15 @@
 import {fireEvent, render, waitFor} from '@testing-library/react-native';
 import {expect} from 'expect';
 import LoginForm from '../components/login-form/LoginForm';
-import LoginScreen from '@screens/login/LoginScreen';
+import React from 'react';
+import LoginScreen from '../LoginScreen';
 
 describe('Login Screen', () => {
     it('Should go to home page on Login', async () => {
 
         const navigation = {navigate: () => {}}
         jest.spyOn(navigation, 'navigate');
-        const page = render(<LoginScreen navigation = {navigation}/>);
+        const page = render(<LoginScreen/>);
 
         const email = page.getByTestId("email");
         const password = page.getByTestId("password");
@@ -45,14 +46,14 @@ describe('Login Screen', () => {
 
         const navigation = {navigate: () => {}}
         jest.spyOn(navigation, 'navigate');
-        const page = render(<LoginScreen navigation = {navigation}/>);
+        const page = render(<LoginScreen/>);
         const email = page.getByTestId("email");
         fireEvent.changeText(email, "valid@email.com");
 
         const loginButton = page.getByTestId("loginButton");
         fireEvent.press(loginButton);
         
-        await waitFor(()=> page.getByTestId("errorEmail"));
+        await waitFor(()=> page.getByTestId("errors-email"));
     }) 
 })
 jest.mock('@react-navigation/native', () => ({
@@ -63,19 +64,23 @@ jest.mock('@react-navigation/native', () => ({
   jest.mock('react-native-paper', () => {
 
   });
-  jest.mock('formik', () => {
+  /* jest.mock('formik', () => {
+
+  }); */
+  jest.mock('react-native-svg', () => {
 
   });
-  import 'react-native-gesture-handler/jestSetup';
+  jest.mock('react-native-vector-icons', () => {
 
-  jest.mock('react-native-reanimated', () => {
-    const Reanimated = require('react-native-reanimated/mock');
-  
-    // The mock for `call` immediately calls the callback which is incorrect
-    // So we override it with a no-op
-    Reanimated.default.call = () => {};
-  
-    return Reanimated;
   });
   jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
-  
+  jest.mock('@testing-library/react-native', () => {
+
+  });
+  jest.mock('expect', () => {
+
+  });
+/*   jest.mock('yup', () => {
+
+  }); */
+ 

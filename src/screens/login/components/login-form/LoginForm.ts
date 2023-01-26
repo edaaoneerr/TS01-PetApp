@@ -1,10 +1,8 @@
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
-
-const LoginForm = Yup.object().shape(
-    {
-        email: Yup.string().required('Email is required').email("Not a valid email"),
-        password: Yup.string().required('Password is required')
+const LoginForm = Yup.object({
+        email: Yup.string().nullable().email().required('Email is required'),
+        password: Yup.string().nullable().required('Password is required')
     }
 );
 export default LoginForm;

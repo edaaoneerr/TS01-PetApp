@@ -8,7 +8,8 @@ export const SCREENS = {
   PROFILE: "Profile",
   VET: "VetScreen",
   VETINFO: 'VetInfoScreen',
-  LOGIN: "LoginScreen"
+  LOGIN: "LoginScreen",
+  REGISTER: "RegisterScreen"
 };
 
 export function navigateToScreen(screenName: string) {

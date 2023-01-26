@@ -1,10 +1,11 @@
 import { ExtendedTheme } from "@react-navigation/native";
-import { ViewStyle, StyleSheet } from "react-native";
+import { ViewStyle, StyleSheet, TextStyle } from "react-native";
 
 interface Style {
   content: ViewStyle;
   view: ViewStyle;
   cardButton: ViewStyle;
+  error: TextStyle;
 
 }
 
@@ -26,6 +27,10 @@ export default (theme: ExtendedTheme) => {
     cardButton: {
       margin: 2,
       marginHorizontal:0,   
+     },
+     error: {
+      color: 'white',
+      backgroundColor: 'red',
      }
 
 

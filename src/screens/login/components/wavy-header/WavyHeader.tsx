@@ -7,7 +7,6 @@ import Svg, { Path } from 'react-native-svg';
  * ? Local Imports
  */
 import createStyles from "./WavyHeader.style";
-import { ColorSpace } from "react-native-reanimated";
 
 interface WavyHeaderProps {}
 
