@@ -1,5 +1,5 @@
 import { ExtendedTheme } from "@react-navigation/native";
-import { ViewStyle, StyleSheet, TextStyle } from "react-native";
+import { ViewStyle, StyleSheet } from "react-native";
 
 interface Style {
   safeView: ViewStyle;

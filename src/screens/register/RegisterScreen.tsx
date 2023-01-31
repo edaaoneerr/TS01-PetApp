@@ -9,8 +9,13 @@ import createStyles from "./RegisterScreen.style";
 
 import { SafeAreaView, ScrollView, View } from 'react-native';
 import { Button, TextInput } from "react-native-paper";
+import { SCREENS } from "@shared-constants";
 
-  const RegisterScreen=  () => {
+interface RegisterScreenProps {
+  navigation: any;
+}
+
+  const RegisterScreen=  (props: RegisterScreenProps) => {
 
     const theme = useTheme();
     const { colors } = theme;
@@ -27,6 +32,12 @@ import { Button, TextInput } from "react-native-paper";
       <TextInput label= "Confirm Password" secureTextEntry={true} right= {<TextInput.Icon name= {show ? "eye" : "eye-off-outline"} onPress={() => setShow(!show)} color= {colors.vetblue}/>}/>
       <TextInput label= "Phone Number" keyboardType="phone-pad"/>
       <Button mode= "contained" style={styles.button}>Register</Button>
+      <Button mode= "contained" 
+      style={styles.vetRegisterButton}
+      onPress={()=> props.navigation.navigate("VetRegisterScreen")}>
+        Veteriner misiniz? 
+        </Button> 
+
       </View>
     </ScrollView>
    </SafeAreaView>

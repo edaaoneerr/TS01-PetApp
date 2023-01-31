@@ -44,8 +44,6 @@ const VetCard: React.FC<VetCardProps> = ({hourAppointment,dayAppointment,fullNam
       
        <LikeButton />   
       
-  
-   
        {/* Vet Info Section: Name, Location, Specialty */}
        <VetInfo  fullName={fullName}
         specialty={specialty}

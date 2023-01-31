@@ -13,7 +13,8 @@ export default (theme: ExtendedTheme) => {
         position: 'absolute',
         color: colors.vetblue,
         right:22,
-        top: 23
+        top: 20,
+        zIndex: 99,
       },
       
     });

@@ -9,20 +9,25 @@ import { Bars3BottomRightIcon, HeartIcon, MagnifyingGlassIcon } from 'react-nati
 import createStyles from "./Search.style";
 
 
-interface SearchProps {}
+interface SearchProps {
+  style?: any;
+  placeholder?: string;
+  iconStyle?: any;
+  barStyle?: any;
+}
 
-const Search: React.FC<SearchProps> = () => {
+const Search: React.FC<SearchProps> = (props: SearchProps) => {
   const theme = useTheme();
   const { colors } = theme;
   const styles = useMemo(() => createStyles(theme), [theme]);
 
   return (
-    <View style={styles.searchHeader}>
-    <View style={styles.searchBar}>
-    <MagnifyingGlassIcon style={styles.searchIconHeader} size={18}/>
+    <View style={[styles.searchHeader,{...props.style}]}>
+    <View style={[styles.searchBar,{...props.barStyle}]}>
+    <MagnifyingGlassIcon style={[styles.searchIconHeader,{...props.iconStyle}]} size={18}/>
     <TextInput 
      style={styles.input}
-     placeholder='Veteriner Ara..' 
+     placeholder={props.placeholder} 
      keyboardType='default'/> 
     </View>
 

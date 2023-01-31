@@ -29,8 +29,10 @@ export default (theme: ExtendedTheme) => {
       marginHorizontal:0,   
      },
      error: {
-      color: 'white',
-      backgroundColor: 'red',
+      color: 'red',
+      backgroundColor: 'transparent',
+      bottom: 2,
+      left: 15
      }
 
 

@@ -11,7 +11,8 @@ import { isAndroid } from "@freakycoder/react-native-helpers";
 // import { createNavigationContainerRef } from "@react-navigation/native";
 import { NativeBaseProvider } from 'native-base';
 import { Provider } from "react-redux";
-import { LoginStore } from './src/services/redux/stores/LoginStore';
+import Loading from "@shared-components/loading/Loading";
+import { Store } from "@services/redux/Store";
 
 LogBox.ignoreAllLogs();
 
@@ -33,11 +34,12 @@ const App = () => {
 
    
   return (
-    <Provider store={LoginStore}>
+    <Provider store={Store}>
     <PaperProvider>
      <NativeBaseProvider>
       <Navigation />
       </NativeBaseProvider>
+      <Loading/>
     </PaperProvider>
     </Provider>
 

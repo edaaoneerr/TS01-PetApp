@@ -9,7 +9,13 @@ export const SCREENS = {
   VET: "VetScreen",
   VETINFO: 'VetInfoScreen',
   LOGIN: "LoginScreen",
-  REGISTER: "RegisterScreen"
+  REGISTER: "RegisterScreen",
+  VET_REGISTER: "VetRegisterScreen",
+  VET_SERVICES: "VetServicesScreen",
+
+  CLINIC_SERVICES: "ClinicServices",
+  EMERGENCY_SERVICES: "EmergencyServices",
+  HOME_SERVICES: "HomeServices",
 };
 
 export function navigateToScreen(screenName: string) {
@@ -17,3 +23,5 @@ export function navigateToScreen(screenName: string) {
     NavigationService.navigationRef.navigate(screenName);
   }
 }
+
+export const textValues = ['Köpek', 'Kedi', 'Hamster', 'Tavşan', 'Büyükbaş', 'Küçükbaş', 'Kuş'];

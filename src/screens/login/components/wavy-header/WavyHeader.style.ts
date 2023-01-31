@@ -13,6 +13,7 @@ export default (theme: ExtendedTheme) => {
         width: 415,
         backgroundColor: colors.vetblue, 
         height: 180,
+        top: 10
     },
   });
 };

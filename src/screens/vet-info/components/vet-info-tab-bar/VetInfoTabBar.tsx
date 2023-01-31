@@ -7,9 +7,14 @@ import VetMedia from "../pages/vet-media/VetMedia";
 import VetComments from "../pages/vet-comments/VetComments";
 
 
-interface VetInfoTabBarProps {}
+interface VetInfoTabBarProps {
+  clinicName: string;
+  address: string;
+  number: string;
+  email: string;
+}
 
-const VetInfoTabBar: React.FC<VetInfoTabBarProps> = () => {
+const VetInfoTabBar = (props: VetInfoTabBarProps) => {
   const theme = useTheme();
   const { colors } = theme;
   const Tab = createMaterialTopTabNavigator();
@@ -42,10 +47,14 @@ const VetInfoTabBar: React.FC<VetInfoTabBarProps> = () => {
     },
 
   }}>
-      <Tab.Screen name="VetAddress" component={VetAddress} options={{
+      <Tab.Screen 
+  name="VetAddress" 
+  component={() => <VetAddress name={props.clinicName} address={props.address} phone_number={props.number} email={props.email} />} 
+  options={{
     tabBarIcon: () => null,
     tabBarLabel: 'Adresler'
-  }}/>
+  }}
+/>
       <Tab.Screen name="VetClinic" component={VetClinic} options={{
     tabBarIcon: () => null,
     tabBarLabel: ' Klinik'

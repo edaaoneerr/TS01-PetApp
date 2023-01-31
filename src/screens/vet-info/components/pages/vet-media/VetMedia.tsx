@@ -1,26 +1,51 @@
-import { View, Text } from 'react-native';
-import React, { useMemo } from 'react';
-import createStyles from "./VetMedia.style";
-import { useTheme } from "@react-navigation/native";
+import { StyleSheet, Text, View, Image } from 'react-native';
+import React, {useState} from 'react'
+import ImagePicker from 'react-native-image-crop-picker';
+import { Button } from 'react-native-paper';
 
-interface VetMediaProps {
-}
-const VetMedia: React.FC<VetMediaProps> = () => {
+const VetMedia = () => {
 
- const theme = useTheme();
- const { colors } = theme;
- const styles = useMemo(() => createStyles(theme), [theme]);
+  function choosePhotoFromGallery() {
+    ImagePicker.openPicker({
+      width: 200,
+      height: 200,
+      cropping: true
+    }).then(image => {
+      console.log(image);
+      setImage(image.path);
+    });
+  }
 
-  const img = {uri: 'https://static-maps.yandex.ru/1.x/?lang=tr_TR&l=map&pt=32.8382691246,39.8956271266,org&scale=1.5&size=650,350&z=13'};
-  
+  function chooseMultiplePhotosFromGallery() {
+    ImagePicker.openPicker({
+      multiple: true
+    }).then(images => {
+      console.log(images);
+    });
+  }
+
+  function takePhotoFromCamera() {
+    ImagePicker.openCamera({
+      width: 200,
+      height: 200,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      setImage(image.path);
+
+    });
+  }
+
+  const [image, setImage] = useState('https://images.pexels.com/photos/5487067/pexels-photo-5487067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+
   return (
-    <View style={styles.container}>
-      <Text>
-        Notification
-      </Text>
+    <View style= {{top: 300, marginHorizontal: 25}}>
+    <Button mode= "contained" onPress={() => takePhotoFromCamera()}>Galeriden Fotoğraf Seç</Button>
+     <Image source={{uri: image}} style = {{width: 200, height: 200, bottom: 250}}/>
+
     </View>
-  );
-  };
-  
-  export default VetMedia;
-  
+  )
+}
+
+export default VetMedia
+

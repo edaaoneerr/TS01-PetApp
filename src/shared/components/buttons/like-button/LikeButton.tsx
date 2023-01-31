@@ -4,28 +4,38 @@ import { useTheme } from "@react-navigation/native";
  * ? Local Imports
  */
 import createStyles from "./LikeButton.style";
-// import MockData from "./mock/MockData";
-// import CardItem from "./components/card-item/CardItem"; 
-import { Pressable, View } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Pressable } from 'react-native';
 
 interface LikeButtonProps {
+ 
 }
 
 const LikeButton: React.FC<LikeButtonProps> = () => {
-    const [iconName, setIconName] = useState('heart-o');
-    const [timesPressed, setTimesPressed] = useState(0);
+    let [iconName, setIconName] = useState('heart-o');
+    let [isLiked, setIsLiked] = useState(false);
+    let [timesPressed, setTimePressed] = useState(1);
 
     const theme = useTheme();
     const { colors } = theme;
     const styles = useMemo(() => createStyles(theme), [theme]);
+    
+
+    const pressFunction = () => {
+        setTimePressed(timesPressed + 1);
+        if (timesPressed % 2 === 0) {
+            setIconName('heart-o');
+        } else {
+            setIconName('heart');
+        }
+
+    }
   return (
     
-    <View style= {styles.likeBtn}>
- <Pressable onPress={() => {[setTimesPressed((current) => current + 1), timesPressed % 2 === 0 ? [setIconName('heart-o')] : [setIconName('heart')]]}}>
-<FontAwesome name = {iconName} size={23} color = {colors.vetblue}/>     
-</Pressable>
-</View>
+    <Pressable style= {styles.likeBtn}
+     onPress={pressFunction}>
+    <FontAwesome name = {iconName} size={22} color = {colors.vetblue}/>     
+    </Pressable>
   );
 };
 

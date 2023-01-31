@@ -27,7 +27,6 @@ const VetInfoCard: React.FC<VetInfoCardProps> = ({fullName, specialty, location}
     <View style ={styles.vetInfoCard}>   
      
        <LikeButton/>
-       {/* Vet Info Section: Name, Location, Specialty */}
        <VetInfo location = {location} fullName = {fullName} specialty = {specialty}  />
        <SendMessageButton/>
        <CallButton/>  

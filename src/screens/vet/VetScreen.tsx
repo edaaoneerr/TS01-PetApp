@@ -10,10 +10,10 @@ import createStyles from "./VetScreen.style";
 /**
  * ? Shared Imports
  */
-import Search from "./components/search/Search";
 import VetCard from "./components/vet-card/VetCard";
 import Header from "@shared-components/header/Header";
 import { ScrollView } from "native-base";
+import Search from "../../shared/components/search/Search";
 
 
 interface VetScreenProps {}
@@ -37,7 +37,7 @@ const VetScreen: React.FC<VetScreenProps> = () => {
 
     
     {/* Search */}
-    <Search/>
+    <Search placeholder="Veteriner Ara.."/>
 
      {/* Body */}
  <ScrollView contentContainerStyle= {styles.scrollableContentHome}>
